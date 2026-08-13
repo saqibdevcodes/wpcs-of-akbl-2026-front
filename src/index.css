@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+/* Custom Looping Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes marqueeReverse {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* If you are using Tailwind v4, register them as utility hooks */
+@theme {
+  --animate-marquee: marquee 80s linear infinite;
+  --animate-marqueeReverse: marqueeReverse 80s linear infinite;
+}
