@@ -18,7 +18,7 @@ export default function AppHeader() {
             <NavigationMenuTrigger>User Menu</NavigationMenuTrigger>
             <NavigationMenuContent>
               <NavigationMenuLink className={"cursor-none"}>
-                HELLO KASHF FOUNDATION
+                HELLO WPCS OF AKBL 2026
               </NavigationMenuLink>
               <NavigationMenuLink
                 className={"cursor-pointer"}

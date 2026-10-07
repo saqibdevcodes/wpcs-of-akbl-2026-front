@@ -185,6 +185,8 @@ export default function Home() {
                 setDepartmentValue(value);
                 setIsFilterApplies(true);
               }}
+              searchable={true}
+              align="right"
             />
           </div>
 
@@ -222,7 +224,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           <div className="flex flex-col h-full transform transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.05)] rounded-2xl">
             <Chart1
-              title={"Overall Satisfaction (Top 2 Boxes)"}
+              title={"Overall Experience (Top 2 Boxes)"}
               value={q2}
               total={total}
             />
@@ -236,7 +238,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col h-full transform transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.05)] rounded-2xl">
             <Chart3
-              title={"Employees Net Promoter Score"}
+              title={"Employee Net Promoter Score"}
               value={q4}
               total={total}
             />
