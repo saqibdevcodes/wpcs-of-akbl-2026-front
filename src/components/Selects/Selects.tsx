@@ -92,9 +92,9 @@ function SearchableSelect({
         onClick={() => setIsOpen((prev) => !prev)}
         className={cn(
           "flex h-8 w-full items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent py-2 pr-2 pl-2.5 text-sm transition-colors outline-none select-none",
-          "hover:bg-slate-50 dark:hover:bg-input/50",
-          "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
-          isOpen && "border-ring ring-3 ring-ring/50"
+          "hover:bg-[#f0f9fd]/60 dark:hover:bg-input/50",
+          "focus-visible:border-[#009bdf] focus-visible:ring-3 focus-visible:ring-[#009bdf]/25",
+          isOpen && "border-[#009bdf] ring-3 ring-[#009bdf]/25"
         )}
       >
         <span
@@ -123,7 +123,7 @@ function SearchableSelect({
           <ChevronDown
             className={cn(
               "size-4 text-muted-foreground transition-transform duration-200",
-              isOpen && "rotate-180"
+              isOpen && "rotate-180 text-[#009bdf]"
             )}
           />
         </div>
@@ -147,7 +147,7 @@ function SearchableSelect({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search department..."
-                className="w-full rounded-md border border-input bg-background pl-8 pr-7 py-1.5 text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-ring focus:ring-1 focus:ring-ring"
+                className="w-full rounded-md border border-input bg-background pl-8 pr-7 py-1.5 text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-[#009bdf] focus:ring-1 focus:ring-[#009bdf]"
               />
               {searchQuery && (
                 <button
@@ -164,7 +164,7 @@ function SearchableSelect({
                 {filteredItems.length} of {items.length} departments
               </span>
               {searchQuery && (
-                <span className="text-sky-500 font-semibold">Filtered</span>
+                <span className="text-[#009bdf] font-bold">Filtered</span>
               )}
             </div>
           </div>
@@ -184,13 +184,13 @@ function SearchableSelect({
                     className={cn(
                       "flex items-center justify-between px-2.5 py-1.5 rounded-md cursor-pointer transition-colors text-foreground",
                       isSelected
-                        ? "bg-accent font-medium text-accent-foreground"
-                        : "hover:bg-accent/50 hover:text-accent-foreground"
+                        ? "bg-[#009bdf]/10 font-bold text-[#0077b5]"
+                        : "hover:bg-[#f0f9fd] hover:text-[#0077b5]"
                     )}
                   >
                     <span className="truncate pr-2">{item.label}</span>
                     {isSelected && (
-                      <Check className="size-3.5 text-primary shrink-0" />
+                      <Check className="size-3.5 text-[#009bdf] shrink-0" />
                     )}
                   </div>
                 );

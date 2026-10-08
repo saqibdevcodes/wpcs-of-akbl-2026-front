@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import ReactApexChart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
 
@@ -14,18 +14,26 @@ export default function Chart2({ title, value, total }: Chart2Props) {
   const percentage = Math.round(Number(value?.q3TotalCountPercentage)) || 0;
   const safeTotal = Number.isFinite(total) ? total : 0;
 
-  // Dynamically switches the active progress bar color based on performance thresholds
+  // Askari Bank Logo Palette: Primary Cyan-Blue (#009bdf)
   const getBarColor = (val: number) => {
-    if (val < 30) return "#ef4444"; // Tailwind red-500
-    if (val < 70) return "#f59e0b"; // Tailwind amber-500
-    return "#10b981"; // Tailwind emerald-500
+    if (val < 40 && val > 0) return "#d71920"; // Askari Red (critical alert)
+    return "#009bdf"; // Askari Brand Cyan-Blue
   };
 
-  const [options] = useState<ApexOptions>({
+  const barColor = getBarColor(percentage);
+
+  const options = useMemo<ApexOptions>(() => ({
     chart: {
       type: "radialBar",
       sparkline: {
         enabled: true,
+      },
+      animations: {
+        enabled: true,
+        dynamicAnimation: {
+          enabled: true,
+          speed: 400,
+        },
       },
     },
     plotOptions: {
@@ -38,7 +46,7 @@ export default function Chart2({ title, value, total }: Chart2Props) {
           background: "transparent",
         },
         track: {
-          background: "#f1f5f9", // Crisp Slate-100 base track
+          background: "#f1f5f9",
           strokeWidth: "85%",
           margin: 0,
           dropShadow: {
@@ -59,7 +67,7 @@ export default function Chart2({ title, value, total }: Chart2Props) {
             fontSize: "32px",
             fontWeight: "800",
             fontFamily: "ui-sans-serif, system-ui, sans-serif",
-            color: "#0f172a",
+            color: "#0077b5",
             formatter: (val) => `${val}%`,
           },
         },
@@ -67,19 +75,19 @@ export default function Chart2({ title, value, total }: Chart2Props) {
     },
     fill: {
       type: "solid",
-      colors: [getBarColor(percentage)],
+      colors: [barColor],
     },
     stroke: {
-      lineCap: "round", // Smoothly rounds off the ends of the progress arc
+      lineCap: "round",
     },
     labels: ["Score"],
-  });
+  }), [barColor]);
 
   return (
-    <div className="flex flex-col h-full bg-white text-slate-900 border border-slate-100 rounded-2xl p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-200 hover:shadow-[0_4px_25px_-2px_rgba(0,0,0,0.08)]">
+    <div className="flex flex-col h-full bg-white text-slate-900 border border-slate-200/80 rounded-2xl p-5 shadow-[0_4px_20px_-4px_rgba(0,155,223,0.06)] transition-all duration-200 hover:shadow-[0_8px_30px_-4px_rgba(0,155,223,0.14)] hover:border-[#009bdf]/30">
       {/* Header */}
-      <div className="border-b border-slate-50 pb-3 mb-4 text-center">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 line-clamp-1">
+      <div className="border-b border-slate-100 pb-3 mb-4 text-center">
+        <h3 className="text-xs font-black uppercase tracking-wider text-[#0077b5] line-clamp-1">
           {title}
         </h3>
       </div>
@@ -87,6 +95,7 @@ export default function Chart2({ title, value, total }: Chart2Props) {
       {/* Chart Canvas Area */}
       <div className="flex-1 flex items-center justify-center min-h-[200px] relative">
         <ReactApexChart
+          key={`chart2-${barColor}-${percentage}`}
           options={options}
           series={[percentage]}
           type="radialBar"
@@ -95,20 +104,20 @@ export default function Chart2({ title, value, total }: Chart2Props) {
         />
 
         {/* Subtle, clean layout minimum/maximum endpoints */}
-        <div className="absolute bottom-6 left-8 text-[10px] font-semibold text-slate-300 select-none">
+        <div className="absolute bottom-6 left-8 text-[10px] font-bold text-[#808285] select-none">
           0
         </div>
-        <div className="absolute bottom-6 right-8 text-[10px] font-semibold text-slate-300 select-none">
+        <div className="absolute bottom-6 right-8 text-[10px] font-bold text-[#808285] select-none">
           100
         </div>
       </div>
 
       {/* Footer Badge */}
-      <div className="mt-3 pt-3 border-t border-slate-50 flex justify-center">
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-50/80 border border-slate-100 px-3 py-1 text-[11px] font-medium text-slate-500">
+      <div className="mt-3 pt-3 border-t border-slate-100 flex justify-center">
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-[#f0f9fd] border border-[#009bdf]/20 px-3 py-1 text-[11px] font-medium text-[#0077b5]">
           Sample Size
-          <span className="inline-block w-1 h-1 rounded-full bg-slate-300" />
-          <span className="font-bold text-slate-700">n = {safeTotal}</span>
+          <span className="inline-block w-1 h-1 rounded-full bg-[#009bdf]" />
+          <span className="font-bold text-[#0077b5]">n = {safeTotal}</span>
         </div>
       </div>
     </div>

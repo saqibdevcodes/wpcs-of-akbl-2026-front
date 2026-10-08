@@ -98,23 +98,28 @@ export default function Home() {
   ]);
 
   return (
-    <div className="min-h-screen  text-slate-900  space-y-4 font-sans antialiased ">
-      {/* 1. Filter Section Panel (Clean glassmorphic card with a subtle top accent border) */}
-      <div className="bg-white rounded-2xl border-t-4 border-t-sky-500 border-x border-b border-slate-100 p-6 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] backdrop-blur-md">
+    <div className="min-h-screen text-slate-900 space-y-5 font-sans antialiased">
+      {/* 1. Filter Section Panel (Askari Bank Cyan Accent Border & Refined Styling) */}
+      <div className="bg-white rounded-2xl border-t-4 border-t-[#009bdf] border-x border-b border-slate-200/80 p-6 shadow-[0_10px_30px_-15px_rgba(0,155,223,0.06)] backdrop-blur-md">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 pb-5 mb-5">
           <div>
-            <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-sky-600 via-blue-600 to-pink-600 bg-clip-text text-transparent">
-              Apply Filters
-            </h1>
-            <p className="text-xs font-semibold text-slate-400 mt-1">
-              Narrow down your data slice by adjusting the parameters below.
+            <div className="flex items-center gap-2.5">
+              <h1 className="text-xl font-black tracking-tight text-slate-900">
+                Filter Survey Data
+              </h1>
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#f0f9fd] text-[#0077b5] border border-[#009bdf]/25">
+                AKBL Analytics
+              </span>
+            </div>
+            <p className="text-xs font-medium text-[#808285] mt-1">
+              Filter workplace climate and sentiment metrics by selecting parameters below.
             </p>
           </div>
           {isFilterApplies && (
             <Button
               variant="ghost"
               size="sm"
-              className="self-start sm:self-auto text-xs font-bold text-rose-500 bg-rose-50 hover:bg-rose-100 hover:text-rose-600 rounded-xl transition-all duration-200 px-4 py-2 shadow-sm"
+              className="self-start sm:self-auto text-xs font-bold text-[#f36f21] bg-orange-50/90 border border-orange-200/90 hover:bg-orange-100 hover:text-[#d71920] rounded-xl transition-all duration-200 px-4 py-2 shadow-2xs"
               onClick={() => {
                 setIsFilterApplies(false);
                 resetFilters();
@@ -128,8 +133,8 @@ export default function Home() {
         {/* Dropdown Input Controls */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-end">
           <div className="space-y-1.5 w-full">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-indigo-500/90 px-0.5 flex items-center gap-1">
-              <span className="w-1 h-1 rounded-full bg-indigo-500" /> Gender
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[#0077b5] px-0.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#009bdf]" /> Gender
             </label>
             <Selects
               items={gender}
@@ -143,8 +148,8 @@ export default function Home() {
           </div>
 
           <div className="space-y-1.5 w-full">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-purple-500/90 px-0.5 flex items-center gap-1">
-              <span className="w-1 h-1 rounded-full bg-purple-500" /> Age Group
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[#0077b5] px-0.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0082bc]" /> Age Group
             </label>
             <Selects
               items={age}
@@ -158,8 +163,8 @@ export default function Home() {
           </div>
 
           <div className="space-y-1.5 w-full">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-amber-500/90 px-0.5 flex items-center gap-1">
-              <span className="w-1 h-1 rounded-full bg-amber-500" /> Region
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[#f36f21] px-0.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#f36f21]" /> Region
             </label>
             <Selects
               items={region}
@@ -173,8 +178,8 @@ export default function Home() {
           </div>
 
           <div className="space-y-1.5 w-full">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-emerald-500/90 px-0.5 flex items-center gap-1">
-              <span className="w-1 h-1 rounded-full bg-emerald-500" />{" "}
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[#5a6069] px-0.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#808285]" />{" "}
               Department
             </label>
             <Selects
@@ -191,8 +196,8 @@ export default function Home() {
           </div>
 
           <div className="space-y-1.5 w-full">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-rose-500/90 px-0.5 flex items-center gap-1">
-              <span className="w-1 h-1 rounded-full bg-rose-500" /> Tenure
+            <label className="text-[11px] font-bold uppercase tracking-wider text-[#0077b5] px-0.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#009bdf]" /> Tenure
             </label>
             <Selects
               items={tenure}
@@ -215,10 +220,13 @@ export default function Home() {
       {/* 3. Analytics & Performance Charts Container */}
       <div className="space-y-5">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-extrabold uppercase tracking-widest bg-gradient-to-r from-slate-500 to-slate-400 bg-clip-text text-transparent">
-            Sentiment & Effort Deep-Dives
-          </h2>
-          <span className="h-px bg-gradient-to-r from-slate-200/80 to-transparent flex-1 ml-4" />
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#009bdf]" />
+            <h2 className="text-xs font-black uppercase tracking-widest text-slate-700">
+              Sentiment & Effort Deep-Dives
+            </h2>
+          </div>
+          <span className="h-px bg-gradient-to-r from-slate-200 to-transparent flex-1 ml-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -231,7 +239,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col h-full transform transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.05)] rounded-2xl">
             <Chart2
-              title={"Employee Effort Score (Top 3 Boxes)"}
+              title={"Employee Effort Score (Top 2 Boxes)"}
               value={q3}
               total={total}
             />

@@ -7,9 +7,9 @@ export default function Layout() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="w-full">
+      <div className="w-full min-h-screen bg-slate-50/70 flex flex-col">
         <AppHeader />
-        <main className="m-6">
+        <main className="m-6 flex-1">
           <Outlet />
         </main>
       </div>

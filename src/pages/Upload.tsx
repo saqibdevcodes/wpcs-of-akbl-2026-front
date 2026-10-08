@@ -184,7 +184,7 @@ export default function Upload() {
 
       {file && (
         <Button
-          className="w-full mt-4 h-10 shadow-sm font-medium transition-all"
+          className="w-full mt-4 h-11 bg-gradient-to-r from-[#009bdf] to-[#0077b5] hover:from-[#0082bc] hover:to-[#006aa3] text-white shadow-lg shadow-[#009bdf]/25 font-bold rounded-xl transition-all"
           onClick={() => handleUpload(file)}
         >
           {loading ? <Spinner data-icon="inline-start" /> : ""}

@@ -33,47 +33,52 @@ export default function CardsStack({ data }: any) {
   // ];
 
   return (
-    <div className="flex gap-3 h-full">
-      {/* Total to be */}
-      <div className="group border border-indigo-100 bg-linear-to-br from-white to-indigo-50/20 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] rounded-xl p-4 flex-1 flex flex-col justify-between min-h-23.75 transition-all duration-200 hover:shadow-[0_4px_25px_-2px_rgba(99,102,241,0.12)] hover:-translate-y-0.5">
+    <div className="flex flex-col sm:flex-row gap-4 h-full">
+      {/* Total to be / Target Cap (Askari Slate & Platinum Theme) */}
+      <div className="group relative overflow-hidden border border-slate-200/90 bg-gradient-to-br from-white via-[#f0f9fd]/40 to-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] rounded-2xl p-5 flex-1 flex flex-col justify-between min-h-24 transition-all duration-200 hover:shadow-[0_6px_25px_-4px_rgba(0,155,223,0.10)] hover:-translate-y-0.5 hover:border-[#009bdf]/30">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#808285] to-[#a7a9ac]" />
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">
-            Target Cap
+          <span className="text-[#808285] font-bold uppercase tracking-wider text-[10px]">
+            Target Benchmark
           </span>
-          <span className="p-1 rounded-lg bg-indigo-50 text-indigo-500 text-xs font-bold">
-            🎯 Target
+          <span className="p-1 px-2.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200/70">
+            🎯 Target Cap
           </span>
         </div>
-        <div className="flex items-baseline justify-between mt-2">
-          <span className="text-slate-600 font-medium">Total Sample Size</span>
-          <span className="text-2xl font-black text-sky-600  tracking-tight">
-            {data?.total || 0}
+        <div className="flex items-baseline justify-between mt-3">
+          <span className="text-slate-600 font-semibold text-sm">Total Sample Size</span>
+          <span className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+            {Number(data?.total || 0).toLocaleString()}
           </span>
         </div>
       </div>
 
-      {/* Data Received */}
-      <div className="group border border-sky-100 bg-linear-to-br from-white to-sky-50/20 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] rounded-xl p-4 flex-1 flex flex-col justify-between min-h-23.75 transition-all duration-200 hover:shadow-[0_4px_25px_-2px_rgba(14,165,233,0.12)] hover:-translate-y-0.5">
+      {/* Achieved Sample Size (Askari Cyan-Blue & Orange Signature Theme) */}
+      <div className="group relative overflow-hidden border border-[#009bdf]/25 bg-gradient-to-br from-white via-[#f0f9fd]/60 to-[#e0f3fc]/30 shadow-[0_4px_20px_-4px_rgba(0,155,223,0.08)] rounded-2xl p-5 flex-1 flex flex-col justify-between min-h-24 transition-all duration-200 hover:shadow-[0_8px_30px_-4px_rgba(0,155,223,0.20)] hover:-translate-y-0.5 hover:border-[#009bdf]">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#009bdf] via-[#0082bc] to-[#f36f21]" />
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">
-            Data Stream
+          <span className="text-[#0077b5] font-bold uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f36f21] animate-pulse" />
+            Live Data Stream
           </span>
-          <span className="p-1 rounded-lg bg-sky-50 text-sky-500 text-xs font-bold">
-            📊 Realtime
+          <span className="p-1 px-2.5 rounded-lg bg-[#009bdf]/10 text-[#0077b5] text-xs font-bold border border-[#009bdf]/25">
+            📊 Achieved Realtime
           </span>
         </div>
-        <div className="flex items-baseline justify-between mt-2">
-          <span className="text-slate-600 font-medium">
+        <div className="flex items-baseline justify-between mt-3">
+          <span className="text-slate-600 font-semibold text-sm">
             Achieved Sample Size
           </span>
-          <span className="text-2xl font-black text-sky-600 tracking-tight">
-            {Math.round(data?.count) ?? 0}
-          </span>
-          {data?.count > 0 && data?.total > 0 && (
-            <span className="text-2xl font-black text-sky-600 tracking-tight">
-              {Math.round((data?.count / data?.total) * 100) || 0}%
+          <div className="flex items-baseline gap-3">
+            <span className="text-2xl sm:text-3xl font-black text-[#0077b5] tracking-tight">
+              {Math.round(data?.count || 0).toLocaleString()}
             </span>
-          )}
+            {data?.count > 0 && data?.total > 0 && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-black bg-[#009bdf] text-white shadow-xs">
+                {Math.round((data?.count / data?.total) * 100) || 0}%
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
